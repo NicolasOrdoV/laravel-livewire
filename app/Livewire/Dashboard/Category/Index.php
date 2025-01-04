@@ -11,6 +11,8 @@ class Index extends Component
 {
     //public $categories;
     use WithPagination;
+    public $cofirmingDeleteCategory;
+    public $categoryToDelete;
 
     public function render()
     {
@@ -18,9 +20,18 @@ class Index extends Component
         return view('livewire.dashboard.category.index', compact('categories'));
     }
 
-    public function delete(Category $category)
+    public function delete(/*Category $category*/)
     {
-        $category->delete();
+        $this->categoryToDelete->delete();
+        $this->cofirmingDeleteCategory = false;
         $this->dispatch('deleted');
     }
+
+    public function selectCategoryToDelete(Category $category)
+    {
+        $this->cofirmingDeleteCategory = true;
+        $this->categoryToDelete = $category;
+    }
+
+
 }

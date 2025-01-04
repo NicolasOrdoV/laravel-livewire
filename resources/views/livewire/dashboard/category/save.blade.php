@@ -1,42 +1,53 @@
 <div>
-    <x-action-message on="created">
-        {{ __('Category created') }}
-    </x-action-message>
-    <x-action-message on="updated">
-        {{ __('Category updated') }}
-    </x-action-message>
-    <x-action-message on="deleted">
-        {{ __('Category deleted') }}
-    </x-action-message>
-    <form wire:submit.prevent="submit">
-        @error('title')
-            {{ $message }}
-        @enderror
-        <div>
-            <label for="title">title</label>
-            <input type="text" wire:model="title">
-        </div>
+    <div class="container">
+        <x-action-message on="created">
+            <div class="box-action-message">
+                {{ __('Category created') }}
+            </div>
+        </x-action-message>
+        <x-action-message on="updated">
+            <div class="box-action-message">
+                {{ __('Category updated') }}
+            </div>
+        </x-action-message>
+        <x-form-section submit="submit">
+            <x-slot name="title">
+                {{ __('Category Information') }}
+            </x-slot>
 
-        @error('text')
-            {{ $message }}
-        @enderror
-        <div>
-            <label for="text">Text</label>
-            <input type="text" wire:model="text">
+            <x-slot name="description">
+                {{ __('Update your category.') }}
+            </x-slot>
+            @slot('form')
+                <div class="col-span-10 sm:col-span-4">
+                    @error('title')
+                        {{ $message }}
+                    @enderror
+                    <x-label for="title">Title</x-label>
+                    <x-input type="text" wire:model="title" class="w-full" />
+                </div>
+                <div class="col-span-10 sm:col-span-4">
+                    @error('text')
+                        {{ $message }}
+                    @enderror
+                    <x-label for="text">Text</x-label>
+                    <x-input type="text" wire:model="text" class="w-full" />
+                </div>
+                <div class="col-span-10 sm:col-span-4">
+                    @error('image')
+                        {{ $message }}
+                    @enderror
+                    <x-label for="text">Image</x-label>
+                    <x-input type="file" wire:model="image" class="w-full" />
 
-            {{-- <input type="text" wire:model="text" wire:keydown.enter="submit"> --}}
-        </div>
-        @error('image')
-            {{ $message }}
-        @enderror
-        <div>
-            <label for="text">image</label>
-            <input type="file" wire:model="image">
-
-            @if ($category && $category->image)
-                <img class="w-40 my-3" src="{{ $category->getImageUrl() }}" alt="{{ $category->title }}">
-            @endif
-        </div>
-        <button type="submit">Guardar</button>
-    </form>
+                    @if ($category && $category->image)
+                        <img class="w-40 my-3" src="{{ $category->getImageUrl() }}" alt="{{ $category->title }}">
+                    @endif
+                </div>
+            @endslot
+            @slot('actions')
+                <x-button type="submit">Guardar</x-button>
+            @endslot
+        </x-form-section>
+    </div>
 </div>

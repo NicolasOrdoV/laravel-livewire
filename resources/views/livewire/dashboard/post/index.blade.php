@@ -36,20 +36,40 @@
                         <option value='{{ $c->id }}'>{{ $c->title }}</option>
                     @endforeach
                 </select>
-                <x-input wire:model.live='search' placeholder="{{__('Search...')}}"></x-input>
+                <x-input wire:model.live='search' placeholder="{{ __('Search...') }}"></x-input>
                 <div class="grid grid-cols-2 gap-2">
                     <x-input class="w-full" type="date" wire:model='from' placeholder="Desde"></x-input>
                     <x-input class="w-full" type="date" wire:model.live='to' placeholder="Hasta"></x-input>
+                </div>
+                <div>
+                    <a href='{{ route('d-post-index') }}' class="link-secondary">Limpiar
+                        filtro</a>
                 </div>
             </div>
             <table class="table w-full border">
                 <thead class="text-left bg-gray-50">
                     <tr class="border-b">
-                        <th class="p-2">Id</th>
+                        {{-- <th class="p-2">Id</th>
                         <th class="p-2">Title</th>
                         <th class="p-2">Description</th>
                         <th class="p-2">Category</th>
-                        <th class="p-2">Date</th>
+                        <th class="p-2">Date</th> --}}
+                        @foreach ($columns as $key => $c)
+                            <th class="p-2">
+                                <button wire:click='sort("{{ $key }}")'>
+                                    {{ $c }}
+                                    @if ($key == $sortColumn)
+                                        @if ($sortDirection == 'asc')
+                                            &uarr;
+                                        @else
+                                            &darr;
+                                        @endif
+                                    @endif
+
+                                </button>
+
+                            </th>
+                        @endforeach
                         <th class="p-2">Actions</th>
                     </tr>
                 </thead>

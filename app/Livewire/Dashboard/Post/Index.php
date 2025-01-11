@@ -7,9 +7,14 @@ use App\Models\Post;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Livewire\Dashboard\OrderTrait;
 
 class Index extends Component
 {
+
+    use WithPagination;
+    use OrderTrait;
+
 
     #[Url]
     public $type;
@@ -23,10 +28,16 @@ class Index extends Component
     #[Url]
     public $to;
 
-
-    use WithPagination;
     public $cofirmingDeletePost;
     public $postToDelete;
+
+    public $columns = [
+        'id' => 'Id',
+        'title' => 'Title',
+        'description' => 'Description',
+        'category_id' => 'Category',
+        'date' => 'Date'
+    ];
 
     public function render()
     {
@@ -58,7 +69,7 @@ class Index extends Component
             $posts = $posts->whereBetween('date', [date($this->from), date($this->to)]);
         }
 
-        $posts = $posts->paginate(20);
+        $posts = $posts->orderBy($this->sortColumn, $this->sortDirection)->paginate(20);
         return view('livewire.dashboard.post.index', compact('posts', 'categories'));
     }
 

@@ -33,12 +33,13 @@
                     <x-label for="date">Date</x-label>
                     <x-input type="date" wire:model="date" class="w-full" />
                 </div>
-                <div class="col-span-10 sm:col-span-4">
+                <div class="col-span-10 sm:col-span-6" wire:ignore>
                     @error('text')
                         {{ $message }}
                     @enderror
                     <x-label for="text">Text</x-label>
-                    <textarea wire:model="text" class="w-full"></textarea>
+                    <textarea id="ckcontent">{!! $text !!}</textarea>
+                    <textarea wire:model="text" class="block w-full hidden"></textarea>
                 </div>
                 <div class="col-span-10 sm:col-span-4">
                     @error('description')
@@ -89,8 +90,6 @@
 
                 </div>
 
-
-
                 <div class="col-span-10 sm:col-span-4">
                     @error('image')
                         {{ $message }}
@@ -107,5 +106,14 @@
                 <x-button type="submit">Guardar</x-button>
             @endslot
         </x-form-section>
+        @vite(['resources/js/ckeditor.js'])
     </div>
 </div>
+@script
+    <script>
+        editor.model.document.on('change:data', () => {
+            console.log('Cambio' + editor.getData())
+            $wire.text = editor.getData();
+        })
+    </script>
+@endscript

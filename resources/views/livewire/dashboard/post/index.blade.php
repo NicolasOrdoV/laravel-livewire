@@ -114,4 +114,68 @@
             {{ $posts->links() }}
         </x-card>
     </div>
+    @script
+        <script>
+            // //----Livewire updating-----//
+            // Livewire.hook('morph.updating', ({
+            //     el,
+            //     component,
+            //     toEl,
+            //     skip,
+            //     childrenOnly
+            // }) => {
+            //     // console.log('morph.updating')
+            //     // console.log(component)
+            // })
+
+            // //----Livewire updated-----//
+            // Livewire.hook('morph.updated', ({
+            //     el,
+            //     component
+            // }) => {
+            //     // console.log('morph.updated')
+            //     // console.log(component)
+            //     // console.log(el)
+            // })
+
+            // //----Livewire removing-----//
+            // Livewire.hook('morph.removing', ({
+            //     el,
+            //     component,
+            //     skip
+            // }) => {
+            //     // console.log('morph.removing')
+            //     // console.log(component)
+            //     // console.log(el)
+            // })
+
+            // //----Livewire removed-----//
+            // Livewire.hook('morph.removed', ({
+            //     el,
+            //     component
+            // }) => {
+            //     // console.log('morph.removed')
+            //     // console.log(component)
+            //     // console.log(el)
+            // })
+
+            // //----Livewire adding-----//
+            // Livewire.hook('morph.adding', ({
+            //     el,
+            //     component
+            // }) => {
+            //     // console.log('morph.adding')
+            //     // console.log(component)
+            //     // console.log(el)
+            // })
+
+            // //----Livewire added-----//
+            // Livewire.hook('morph.added', ({
+            //     el
+            // }) => {
+            //     // console.log('morph.added')
+            //     // console.log(el)
+            // })
+        </script>
+    @endscript
 </div>

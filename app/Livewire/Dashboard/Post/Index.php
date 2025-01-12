@@ -39,6 +39,7 @@ class Index extends Component
         'date' => 'Date'
     ];
 
+
     public function render()
     {
         // $posts = Post::where('id', '>=', '1');

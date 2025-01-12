@@ -34,4 +34,12 @@ class Index extends Component
     }
 
 
+    function getCategoryProperty()
+    {
+        if ($this->categoryToDelete) {
+            return Category::find($this->categoryToDelete->id);
+        }
+
+        return "Sin categoria";
+    }
 }

@@ -12,6 +12,19 @@ class Post extends Model
 
     protected $fillable = ['title', 'slug', 'image', 'text', 'description', 'date', 'type', 'posted', 'category_id'];
 
+    // protected $casts = [
+    //     'date' => 'datetime'
+    // ];
+
+    protected function casts(): array
+    {
+        return [
+            'date' => 'datetime'
+        ];
+    }
+
+
+
     public function category()
     {
         return $this->belongsTo(Category::class);

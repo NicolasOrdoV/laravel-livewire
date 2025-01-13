@@ -23,8 +23,9 @@ class General extends Component
 
     protected $listeners = ['stepEvent'];
 
-    function mount(?int $id = null, ?int $step = null)
+    function mount(?int $id = null, ?int $step = null, string $subject = '')
     {
+        $this->subject = $subject;
         if ($id != null) {
             $this->contactGeneral = ContactGeneral::findOrFail($id);
             $this->pk = $this->contactGeneral->id;

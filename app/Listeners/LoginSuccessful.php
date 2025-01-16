@@ -1,32 +1,30 @@
 <?php
 
-namespace App\Providers;
+namespace App\Listeners;
 
 use App\Models\ShoppingCart;
 use Illuminate\Auth\Events\Login;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class LoginSuccessful
 {
     /**
-     * Register any application services.
+     * Create the event listener.
      */
-    public function register(): void
+    public function __construct()
     {
         //
     }
 
     /**
-     * Bootstrap any application services.
+     * Handle the event.
      */
-    public function boot(): void
+    public function handle(Login $event): void
     {
-        // Event::listen(function(Login $event) {
-        //     $this->setShoppingCartSession();
-        // });
+        $this->setShoppingCartSession();
     }
 
     private function setShoppingCartSession(): void

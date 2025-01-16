@@ -44,9 +44,14 @@ Route::group(['middleware' => ['auth:sanctum', config('jetstream.auth_session'),
     });
 });
 
-Route::group(['prefix'=> 'blog'], function () {
+Route::group(['prefix' => 'blog'], function () {
     Route::get('/', App\Livewire\Blog\Index::class)->name('web.index');
-    Route::get('/{slug}', App\Livewire\Blog\Show::class)->name('web.show');
+    Route::get('/{post:slug}', App\Livewire\Blog\Show::class)->name('web.show');
+});
+
+Route::group(['prefix'=> 'shop'], function () {
+    Route::get('/card-list', App\Livewire\Shop\Cart::class)->name('shop.cart.list');
+    //Route::get('/{slug}', App\Livewire\Blog\Show::class)->name('web.show');
 });
 
 Route::get('/contact', App\Livewire\Contact\General::class)->name('contact');

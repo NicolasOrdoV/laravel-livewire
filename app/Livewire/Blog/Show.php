@@ -10,11 +10,10 @@ use Livewire\Component;
 class Show extends Component
 {
     public $post;
-
-    function mount(Post $post) {
+    function mount(Post $post)
+    {
         $this->post = $post;
     }
-
     public function render()
     {
         return view('livewire.blog.show');

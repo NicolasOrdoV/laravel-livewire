@@ -17,6 +17,7 @@
         "vite": "^6.0"
     },
     "dependencies": {
-        "ckeditor5": "^44.1.0"
+        "ckeditor5": "^44.1.0",
+        "toast-me": "^1.5.0"
     }
 }

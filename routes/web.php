@@ -54,6 +54,13 @@ Route::group(['prefix'=> 'shop'], function () {
     //Route::get('/{slug}', App\Livewire\Blog\Show::class)->name('web.show');
 });
 
+Route::group([
+    'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'verified'],
+    'prefix'=> 'todo'], function () {
+    Route::get('/', App\Livewire\Todo\Todo::class)->name('todo.list');
+    //Route::get('/{slug}', App\Livewire\Blog\Show::class)->name('web.show');
+});
+
 Route::get('/contact', App\Livewire\Contact\General::class)->name('contact');
 Route::get('/contact{id}/{step?}', App\Livewire\Contact\General::class)->name('contact-edit');
 // Route::get('/person', App\Livewire\Contact\Person::class)->name('person');
